@@ -48,4 +48,34 @@ my_group = {
     },
 }
 
-print(my_group)
+def max_group_age(group):
+    """Return the maximum age in the group."""
+    return max(person["age"] for person in group.values())
+
+def mean_connection(group):
+    """Return the average number of relations among members of the group."""
+    from statistics import mean
+    num_relations = [sum(len(names) for names in person["connections"].values()) for person in group.values()]
+    return mean(num_relations) if num_relations else 0
+
+
+
+
+if __name__ == "__main__":
+        max_age = max_group_age(my_group)
+        print(f"Maximum age in the group: {max_age}")
+        mean_con = mean_connection(my_group)
+        print(f"Average number of relations: {mean_con}")
+
+        max_age_with_rel = max(
+            [person["age"] for person in my_group.values() if any(person["connections"].values())],
+            default=None
+        )
+        print("Maximum age with at least one relation:", max_age_with_rel)
+
+        max_age_with_friend = max(
+            [person["age"] for person in my_group.values() if "Friend" in person["connections"] and person["connections"]["Friend"]],
+            default=None
+        )
+        print("Maximum age with at least one friend:", max_age_with_friend)
+
