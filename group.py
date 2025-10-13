@@ -17,5 +17,20 @@ my_group = {
         "connections": {
             "Jill" : "friend",
         }
-    } 
+    },
+    "John" : {
+        "age": 27, 
+        "job": "writer",
+        "connections": {
+            "Jill" : "partner",
+        }
+    },
+    "Nash": {
+        "age": 34, 
+        "job": "chef",
+        "connections": {
+            "John" : "cousin",
+            "Zalika" : "landlord"
+        }
+    }
 }
