@@ -59,9 +59,22 @@ def forget(person1, person2):
                 del my_group[person1]["connections"][relation]
             break
 
+def add_person(name, age, job, relations):
+    """Add a new person to the group."""
+    if name in my_group:
+        print(f"{name} already exists in the group.")
+        return
+    my_group[name] = {
+        "age": age,
+        "job": job,
+        "connections": relations
+    }
 forget("Andy", "Yara")
+add_person("Sam", 30, "designer", {"Friend": ["Jill", "Zalika"]})
+
 if __name__ == "__main__":
     for person, info in my_group.items():
         print(f"{person} ({info['age']} yrs, {info['job']}) connections:")
         for friend, relation in info["connections"].items():
             print(f"  - {relation} of {friend}")
+
