@@ -7,43 +7,45 @@ my_group = {
         "age": 26, 
         "job": "biologist",
         "connections": {
-            "Zalika" : "friend",
-            "John" : "partner"
+            "Friend" : ["Zalika"],
+            "Partner" : ["John"]
         }
     },
     "Zalika" : {
         "age": 28, 
         "job": "artist",
         "connections": {
-            "Jill" : "friend",
+            "Friend" : ["Jill"]
         }
     },
     "John" : {
         "age": 27, 
         "job": "writer",
         "connections": {
-            "Jill" : "partner",
+            "Partner" : ["Jill"]
         }
     },
     "Nash": {
         "age": 34, 
         "job": "chef",
         "connections": {
-            "John" : "cousin",
-            "Zalika" : "landlord"
+            "Cousin" : ["John"],
+            "Landlord" : ["Zalika"],
         }
     },
     "Yara": {
         "age": 25, 
         "job": "engineer",
-        "connections": "",
+        "connections": {},
     },
     "Andy": {
         "age": 22, 
         "job": "",
         "connections": {
-            "Yara" : "friend",
-            "Nash" : "gym buddy"
+            "Friend" : ["Yara"],
+            "Gym Buddy" : ["Nash"]
         }
     },
 }
+
+print(my_group)
