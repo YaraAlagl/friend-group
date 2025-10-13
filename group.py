@@ -49,3 +49,19 @@ my_group = {
 }
 
 print(my_group)
+
+def forget(person1, person2):
+    """Remove person2 from person1's connections."""
+    for relation, people in my_group[person1]["connections"].items():
+        if person2 in people:
+            people.remove(person2)
+            if not people:  # If the list is empty, remove the relation
+                del my_group[person1]["connections"][relation]
+            break
+
+forget("Andy", "Yara")
+if __name__ == "__main__":
+    for person, info in my_group.items():
+        print(f"{person} ({info['age']} yrs, {info['job']}) connections:")
+        for friend, relation in info["connections"].items():
+            print(f"  - {relation} of {friend}")
