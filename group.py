@@ -58,7 +58,19 @@ def mean_connection(group):
     num_relations = [sum(len(names) for names in person["connections"].values()) for person in group.values()]
     return mean(num_relations) if num_relations else 0
 
+def max_age_with_relation(group, relation_type):
+    """Return the maximum age of members with at least one specified relation type."""
+    return max(
+        (person["age"] for person in group.values() if relation_type in person["connections"] and person["connections"][relation_type]),
+        default=None
+    )
 
+def max_age_with_any_relation(group):
+    """Return the maximum age of members with at least one relation of any type."""
+    return max(
+        (person["age"] for person in group.values() if any(person["connections"].values())),
+        default=None
+    )
 
 
 if __name__ == "__main__":
@@ -66,16 +78,8 @@ if __name__ == "__main__":
         print(f"Maximum age in the group: {max_age}")
         mean_con = mean_connection(my_group)
         print(f"Average number of relations: {mean_con}")
-
-        max_age_with_rel = max(
-            [person["age"] for person in my_group.values() if any(person["connections"].values())],
-            default=None
-        )
-        print("Maximum age with at least one relation:", max_age_with_rel)
-
-        max_age_with_friend = max(
-            [person["age"] for person in my_group.values() if "Friend" in person["connections"] and person["connections"]["Friend"]],
-            default=None
-        )
-        print("Maximum age with at least one friend:", max_age_with_friend)
+        max_age_friend = max_age_with_relation(my_group, "Friend")
+        print(f"Maximum age with at least one 'Friend' relation: {max_age_friend}")
+        max_age_any = max_age_with_any_relation(my_group)
+        print(f"Maximum age with at least one relation of any type: {max_age_any}")
 
