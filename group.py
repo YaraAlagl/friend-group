@@ -48,7 +48,7 @@ my_group = {
     },
 }
 
-print(my_group)
+
 
 def forget(person1, person2):
     """Remove person2 from person1's connections."""
@@ -69,8 +69,15 @@ def add_person(name, age, job, relations):
         "job": job,
         "connections": relations
     }
+
+def average_age():
+    """Calculate the average age of the group."""
+    total_age = sum(info["age"] for info in my_group.values())
+    return total_age / len(my_group)
+
 forget("Andy", "Yara")
 add_person("Sam", 30, "designer", {"Friend": ["Jill", "Zalika"]})
+print(f"Average age: {average_age():.2f} years")
 
 if __name__ == "__main__":
     for person, info in my_group.items():
