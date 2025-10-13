@@ -2,4 +2,19 @@
 
 # Your code to go here...
 
-my_group =
+my_group = {
+    "Jill": {
+        "age": 26, 
+        "job": "biologist",
+        "connections": {
+            "Zalika" : "friend",
+            "John" : "partner"
+        }
+    },
+    "Zalika" : {
+        "age": 28, 
+        "job": "artist",
+        "connections": {
+            "Jill" : "friend",
+        }
+    } 
