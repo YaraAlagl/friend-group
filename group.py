@@ -65,13 +65,21 @@ def average_age(group):
 def oldest_person(group):
     return max(group.items(), key=lambda item: item[1]["age"])[0]
 
-remove_person("Andy", "Yara")
-add_person("Sam", 30, "designer", {"Friend": ["Jill", "Zalika"]})
-print(f"Average age: {average_age():.2f} years")
 
 if __name__ == "__main__":
-    for person, info in my_group.items():
-        print(f"{person} ({info['age']} yrs, {info['job']}) connections:")
-        for friend, relation in info["connections"].items():
-            print(f"  - {relation} of {friend}")
+    group = {
+        "Alice": {"age": 30},
+        "Bob": {"age": 40},
+        "Charlie": {"age": 25},
+    }
+
+    assert average_age(group) == (30 + 40 + 25) / 3
+
+    add_person(group, "Diana", 22, "New York")
+    assert "Diana" in group
+
+    remove_person(group, "Bob")
+    assert "Bob" not in group
+
+    print("All tests passed!")
 
