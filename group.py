@@ -50,32 +50,22 @@ my_group = {
 
 
 
-def forget(person1, person2):
-    """Remove person2 from person1's connections."""
-    for relation, people in my_group[person1]["connections"].items():
-        if person2 in people:
-            people.remove(person2)
-            if not people:  # If the list is empty, remove the relation
-                del my_group[person1]["connections"][relation]
-            break
+def remove_person(group, name):
+    if name in group:
+        del group[name]
 
-def add_person(name, age, job, relations):
-    """Add a new person to the group."""
-    if name in my_group:
-        print(f"{name} already exists in the group.")
-        return
-    my_group[name] = {
-        "age": age,
-        "job": job,
-        "connections": relations
-    }
 
-def average_age():
-    """Calculate the average age of the group."""
-    total_age = sum(info["age"] for info in my_group.values())
-    return total_age / len(my_group)
+def add_person(group, name, age, city):
+    group[name] = {"age": age, "city": city}
 
-forget("Andy", "Yara")
+def average_age(group):
+    ages = [p["age"] for p in group.values()]
+    return sum(ages) / len(group)
+
+def oldest_person(group):
+    return max(group.items(), key=lambda item: item[1]["age"])[0]
+
+remove_person("Andy", "Yara")
 add_person("Sam", 30, "designer", {"Friend": ["Jill", "Zalika"]})
 print(f"Average age: {average_age():.2f} years")
 
